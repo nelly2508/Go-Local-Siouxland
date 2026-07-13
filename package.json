@@ -1,0 +1,12 @@
+{
+  "name": "golocal-siouxland",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Go Local Siouxland — a local business directory for the Siouxland tri-state area.",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

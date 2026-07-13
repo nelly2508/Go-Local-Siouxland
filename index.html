@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Go Local Siouxland — Discover the Best of the Tri-State</title>
+<meta name="description" content="Find and support the best local businesses across the Siouxland tri-state area — eat, drink, shop, relax and explore." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --green:#159a5c; --green-dark:#0f7d49; --green-soft:#e7f5ee;
+  --orange:#f6931e; --orange-dark:#e07d0a;
+  --ink:#16233b; --muted:#5c6672; --bg:#ffffff; --bg-soft:#f5f7f4;
+  --line:#e7ebe6; --star:#f5a623;
+  --shadow:0 1px 2px rgba(16,35,59,.04),0 8px 24px rgba(16,35,59,.06);
+  --shadow-lg:0 18px 48px rgba(16,35,59,.14);
+  --radius:16px; --radius-sm:11px;
+  --head:'Plus Jakarta Sans',system-ui,sans-serif; --body:'Inter',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--head);line-height:1.15;letter-spacing:-.02em;color:var(--ink);font-weight:800}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--head);font-weight:700;font-size:15px;border:none;cursor:pointer;border-radius:999px;padding:13px 22px;transition:.2s;white-space:nowrap}
+.btn-primary{background:var(--green);color:#fff}
+.btn-primary:hover{background:var(--green-dark);transform:translateY(-1px)}
+.btn-orange{background:var(--orange);color:#fff}
+.btn-orange:hover{background:var(--orange-dark);transform:translateY(-1px)}
+.btn-ghost{background:#fff;color:var(--ink);border:1.5px solid var(--line)}
+.btn-ghost:hover{border-color:var(--green);color:var(--green)}
+.btn-sm{padding:9px 16px;font-size:14px}
+.sec{padding:76px 0}
+.eyebrow{font-family:var(--head);font-weight:700;text-transform:uppercase;letter-spacing:.14em;font-size:12.5px;color:var(--green)}
+.sec-head{max-width:640px;margin-bottom:40px}
+.sec-head h2{font-size:clamp(28px,3.4vw,40px);margin:12px 0 10px}
+.sec-head p{color:var(--muted);font-size:17px}
+
+/* header */
+header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);transition:background .3s ease,border-color .3s ease}
+header.transparent{background:linear-gradient(180deg,rgba(16,35,59,.5),rgba(16,35,59,0));backdrop-filter:none;border-bottom-color:transparent}
+header.transparent .nav-links a{color:#fff}
+header.transparent .nav-links a:hover{color:#fff;opacity:.82}
+header.transparent .nav-links a.active{color:#fff}
+header.transparent .nav-links a.active::after{background:#fff}
+header.transparent .nav-right .signin{color:#fff}
+header.transparent .nav-right .signin:hover{color:#fff;opacity:.82}
+header.transparent .burger span{background:#fff}
+.nav{display:flex;align-items:center;gap:28px;height:74px}
+.brand{display:flex;align-items:center;gap:11px;font-family:var(--head);font-weight:800;font-size:19px}
+.brand img{width:56px;height:56px;object-fit:contain}
+.brand small{display:block;font-weight:600;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:-3px}
+.nav-links{display:flex;gap:26px;margin-left:8px}
+.nav-links a{font-family:var(--head);font-weight:600;font-size:15px;color:var(--ink);padding:6px 0;position:relative}
+.nav-links a:hover{color:var(--green)}
+.nav-links a.active{color:var(--green)}
+.nav-links a.active::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--green);border-radius:2px}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:16px}
+.nav-right .signin{font-family:var(--head);font-weight:600;font-size:15px}
+.nav-right .signin:hover{color:var(--green)}
+.burger{display:none;background:none;border:none;cursor:pointer;padding:8px}
+.burger span{display:block;width:24px;height:2px;background:var(--ink);margin:5px 0;border-radius:2px;transition:.2s}
+
+/* hero */
+.hero{position:relative;min-height:640px;display:flex;align-items:center;color:#fff;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('assets/img/hero.jpg') center/cover no-repeat}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,35,59,.34) 0%,rgba(16,35,59,.30) 40%,rgba(16,35,59,.72) 100%)}
+.hero-inner{position:relative;z-index:2;width:100%;padding:80px 0}
+.hero h1{color:#fff;font-size:clamp(38px,5.4vw,66px);max-width:16ch;text-shadow:0 2px 30px rgba(0,0,0,.25)}
+.hero p.lead{font-size:clamp(17px,2vw,21px);max-width:52ch;margin-top:20px;color:rgba(255,255,255,.94)}
+/* search */
+.search{margin-top:36px;background:#fff;border-radius:18px;padding:10px;display:flex;gap:8px;box-shadow:var(--shadow-lg);max-width:760px}
+.search .field{flex:1;display:flex;flex-direction:column;padding:8px 16px;border-radius:12px;min-width:0}
+.search .field+.field{border-left:1px solid var(--line)}
+.search label{font-family:var(--head);font-weight:700;font-size:11.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.search input,.search select{border:none;outline:none;font-family:var(--body);font-size:15.5px;color:var(--ink);background:none;width:100%;padding-top:2px}
+.search .btn{align-self:stretch}
+.hero-tags{margin-top:22px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.hero-tags span{font-size:14px;color:rgba(255,255,255,.85)}
+.hero-tags a{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);padding:6px 14px;border-radius:999px;font-size:13.5px;font-weight:600;font-family:var(--head);transition:.2s}
+.hero-tags a:hover{background:rgba(255,255,255,.28)}
+
+/* stat strip */
+.stats{background:var(--ink);color:#fff}
+.stats .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;padding:30px 24px}
+.stat{display:flex;flex-direction:column;align-items:center;flex:1;min-width:140px}
+.stat b{font-family:var(--head);font-size:32px;font-weight:800;color:#fff}
+.stat span{font-size:13.5px;color:rgba(255,255,255,.7);letter-spacing:.03em}
+
+/* category grid */
+.cat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+.cat{position:relative;border-radius:var(--radius);overflow:hidden;aspect-ratio:1/1.08;cursor:pointer;box-shadow:var(--shadow)}
+.cat img{width:100%;height:100%;object-fit:cover;transition:.5s}
+.cat::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,35,59,0) 30%,rgba(16,35,59,.82) 100%)}
+.cat:hover img{transform:scale(1.07)}
+.cat-label{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:16px;color:#fff}
+.cat-label h4{color:#fff;font-size:16px}
+.cat-label span{font-size:12.5px;color:rgba(255,255,255,.82)}
+
+/* listing cards */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:.25s;display:flex;flex-direction:column}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:transparent}
+.card-img{position:relative;aspect-ratio:3/2;overflow:hidden}
+.card-img img{width:100%;height:100%;object-fit:cover;transition:.5s}
+.card:hover .card-img img{transform:scale(1.06)}
+.chip{position:absolute;top:12px;left:12px;background:rgba(255,255,255,.95);color:var(--ink);font-family:var(--head);font-weight:700;font-size:11.5px;padding:5px 11px;border-radius:999px;letter-spacing:.02em}
+.ribbon{position:absolute;top:12px;right:12px;background:var(--orange);color:#fff;font-family:var(--head);font-weight:700;font-size:11px;padding:5px 11px;border-radius:999px;letter-spacing:.04em;text-transform:uppercase}
+.card-body{padding:18px 18px 20px;display:flex;flex-direction:column;flex:1}
+.card-body h3{font-size:18px;margin-bottom:6px}
+.meta{display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--muted);margin-bottom:9px;flex-wrap:wrap}
+.rating{display:inline-flex;align-items:center;gap:4px;color:var(--ink);font-weight:600}
+.rating .s{color:var(--star)}
+.price{color:var(--green);font-weight:700}
+.dot{width:3px;height:3px;border-radius:50%;background:var(--muted);display:inline-block}
+.desc{font-size:14.5px;color:var(--muted);flex:1;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card-foot{display:flex;align-items:center;justify-content:space-between;margin-top:15px;padding-top:14px;border-top:1px solid var(--line)}
+.loc{font-size:13px;color:var(--muted);display:inline-flex;align-items:center;gap:5px}
+.viewlink{font-family:var(--head);font-weight:700;font-size:14px;color:var(--green)}
+
+/* views */
+.view{display:none}
+.view.active{display:block;animation:fade .4s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* business band */
+.band{background:var(--green-soft)}
+.band .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;padding:70px 24px}
+.steps{display:flex;flex-direction:column;gap:20px;margin-top:26px}
+.step{display:flex;gap:16px;align-items:flex-start}
+.step .n{flex:none;width:38px;height:38px;border-radius:50%;background:var(--green);color:#fff;font-family:var(--head);font-weight:800;display:flex;align-items:center;justify-content:center}
+.step h4{font-size:17px}
+.step p{color:var(--muted);font-size:14.5px}
+.band-card{background:#fff;border-radius:var(--radius);padding:34px;box-shadow:var(--shadow-lg)}
+.band-card h3{font-size:24px}
+.tick{display:flex;gap:10px;align-items:center;margin-top:14px;font-size:15px}
+.tick svg{flex:none;color:var(--green)}
+
+/* toolbar (listings) */
+.page-head{background:var(--bg-soft);border-bottom:1px solid var(--line);padding:118px 0 30px}
+.page-head h1{font-size:clamp(28px,3.6vw,42px)}
+.page-head p{color:var(--muted);margin-top:8px;font-size:16px}
+.toolbar{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:24px}
+.toolbar .search-in{flex:1;min-width:220px;display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:11px 18px}
+.toolbar .search-in input{border:none;outline:none;font-size:15px;width:100%;background:none;font-family:var(--body)}
+.toolbar select{background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:11px 18px;font-family:var(--head);font-weight:600;font-size:14.5px;color:var(--ink);cursor:pointer}
+.chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.fchip{background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:8px 16px;font-family:var(--head);font-weight:600;font-size:13.5px;cursor:pointer;transition:.2s;color:var(--muted)}
+.fchip:hover{border-color:var(--green);color:var(--green)}
+.fchip.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.result-count{color:var(--muted);font-size:14.5px;margin:26px 0 18px}
+
+/* detail */
+.detail-hero{position:relative;height:420px;overflow:hidden}
+.detail-hero img{width:100%;height:100%;object-fit:cover}
+.detail-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,35,59,.1),rgba(16,35,59,.8))}
+.detail-hero .wrap{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:32px;color:#fff}
+.detail-hero h1{color:#fff;font-size:clamp(30px,4.4vw,50px);margin:12px 0 10px}
+.detail-hero .meta{color:rgba(255,255,255,.92)}
+.detail-hero .meta .rating{color:#fff}
+.back{display:inline-flex;align-items:center;gap:7px;color:#fff;font-family:var(--head);font-weight:600;font-size:14.5px;margin-bottom:6px;opacity:.9}
+.back:hover{opacity:1}
+.detail-grid{display:grid;grid-template-columns:1fr 380px;gap:44px;padding:52px 0}
+.detail-main h2{font-size:24px;margin:0 0 14px}
+.detail-main h2:not(:first-child){margin-top:40px}
+.detail-main p{color:#3a4453;font-size:16px}
+.love{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px}
+.love div{display:flex;gap:9px;align-items:center;font-size:15px;color:#3a4453}
+.love svg{flex:none;color:var(--green)}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.gallery img{border-radius:12px;aspect-ratio:1/1;object-fit:cover}
+.review{border:1px solid var(--line);border-radius:14px;padding:20px;margin-top:16px}
+.review .who{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.avatar{width:42px;height:42px;border-radius:50%;background:var(--green-soft);color:var(--green-dark);font-family:var(--head);font-weight:800;display:flex;align-items:center;justify-content:center}
+.review .who b{font-family:var(--head)}
+.review .who span{font-size:13px;color:var(--muted)}
+.side-card{border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow);position:sticky;top:96px}
+.side-card .row{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--line);font-size:14.5px;align-items:flex-start}
+.side-card .row:last-of-type{border-bottom:none}
+.side-card .row svg{flex:none;color:var(--green);margin-top:2px}
+.side-card .row b{font-family:var(--head);display:block;font-size:13px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.side-card .btn{width:100%;justify-content:center;margin-top:8px}
+.map{height:150px;border-radius:12px;margin-top:18px;background:linear-gradient(135deg,#dbe8e0,#eef3ea);position:relative;overflow:hidden;border:1px solid var(--line)}
+.map::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(21,154,92,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(21,154,92,.09) 1px,transparent 1px);background-size:26px 26px}
+.map .pin{position:absolute;top:50%;left:50%;transform:translate(-50%,-100%);color:var(--orange)}
+
+/* pricing */
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch}
+.plan{border:1.5px solid var(--line);border-radius:var(--radius);padding:34px 30px;display:flex;flex-direction:column;background:#fff;transition:.2s}
+.plan.pop{border-color:var(--green);box-shadow:var(--shadow-lg);position:relative}
+.plan.pop::before{content:"Most Popular";position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--green);color:#fff;font-family:var(--head);font-weight:700;font-size:12px;padding:5px 16px;border-radius:999px}
+.plan h3{font-size:21px}
+.plan .p{margin:16px 0 4px;font-family:var(--head)}
+.plan .p b{font-size:44px;font-weight:800}
+.plan .p span{color:var(--muted);font-weight:600}
+.plan .sub{color:var(--muted);font-size:14px;min-height:40px}
+.plan ul{list-style:none;margin:22px 0;display:flex;flex-direction:column;gap:12px;flex:1}
+.plan li{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;color:#3a4453}
+.plan li svg{flex:none;color:var(--green);margin-top:3px}
+.toggle{display:flex;align-items:center;justify-content:center;gap:14px;margin:26px 0 40px;font-family:var(--head);font-weight:600}
+.switch{width:56px;height:30px;background:var(--green);border-radius:999px;position:relative;cursor:pointer;transition:.2s}
+.switch.off{background:#c9d2cb}
+.switch i{position:absolute;top:3px;left:3px;width:24px;height:24px;background:#fff;border-radius:50%;transition:.2s}
+.switch:not(.off) i{left:29px}
+.save-badge{background:var(--orange);color:#fff;font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;font-family:var(--head)}
+.faq{max-width:760px;margin:56px auto 0}
+.qa{border-bottom:1px solid var(--line);padding:22px 0}
+.qa h4{font-size:17px;margin-bottom:8px}
+.qa p{color:var(--muted);font-size:15px}
+
+/* footer */
+footer{background:var(--ink);color:rgba(255,255,255,.72);padding:64px 0 30px;margin-top:0}
+.foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px}
+.foot-brand{display:flex;align-items:center;gap:11px;color:#fff;font-family:var(--head);font-weight:800;font-size:19px;margin-bottom:14px}
+.foot-brand img{width:44px;height:44px;background:#fff;border-radius:10px;padding:3px}
+footer p{font-size:14.5px;max-width:34ch}
+footer h5{color:#fff;font-family:var(--head);font-size:14px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+.foot-links{display:flex;flex-direction:column;gap:11px}
+.foot-links a{font-size:14.5px;color:rgba(255,255,255,.72)}
+.foot-links a:hover{color:var(--orange)}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.12);margin-top:44px;padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13.5px}
+.socials{display:flex;gap:12px}
+.socials a{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;transition:.2s}
+.socials a:hover{background:var(--green)}
+
+@media(max-width:980px){
+  .cat-grid{grid-template-columns:repeat(3,1fr)}
+  .cards{grid-template-columns:repeat(2,1fr)}
+  .band .wrap{grid-template-columns:1fr;gap:32px}
+  .detail-grid{grid-template-columns:1fr;gap:32px}
+  .side-card{position:static}
+  .price-grid{grid-template-columns:1fr;max-width:460px;margin:0 auto}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  .nav-links,.nav-right .signin{display:none}
+  .nav-right.open .nav-links{display:flex;position:absolute;top:74px;left:0;right:0;background:#fff;flex-direction:column;padding:18px 24px;border-bottom:1px solid var(--line);gap:14px}
+  .burger{display:block;order:3}
+  .search{flex-direction:column}
+  .search .field+.field{border-left:none;border-top:1px solid var(--line)}
+  .cat-grid{grid-template-columns:repeat(2,1fr)}
+  .cards{grid-template-columns:1fr}
+  .love{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr}
+  .sec{padding:52px 0}
+}
+</style>
+</head>
+<body>
+<header class="transparent">
+  <div class="wrap nav">
+    <a class="brand" href="#home">
+      <img src="assets/img/golocal-logo.png" alt="Go Local Siouxland" />
+    </a>
+    <nav class="nav-right" id="navRight">
+      <div class="nav-links" id="navLinks">
+        <a href="#home" data-nav="home">Home</a>
+        <a href="#listings" data-nav="listings">Explore</a>
+        <a href="#pricing" data-nav="pricing">For Businesses</a>
+        <a href="#home" onclick="alert('Our Siouxland blog is coming soon.');return false;">Blog</a>
+        <a href="#listings" data-nav="listings">Contact</a>
+      </div>
+      <a class="signin" href="#" onclick="alert('Member sign-in is coming soon.');return false;">Sign In</a>
+      <a class="btn btn-primary btn-sm" href="#pricing" data-nav="pricing">Add Your Business</a>
+      <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- ===== HOME ===== -->
+<section class="view active" id="view-home">
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-inner">
+      <div class="wrap">
+        <h1>Find the best of Siouxland</h1>
+        <p class="lead">Discover and support the tri-state's favourite local spots — eat, drink, shop, relax and explore, all in one place.</p>
+        <form class="search" onsubmit="return doHeroSearch(event)">
+          <div class="field">
+            <label>What are you looking for?</label>
+            <input type="text" id="q-what" placeholder="Restaurants, coffee, salons, hotels…" />
+          </div>
+          <div class="field">
+            <label>Where</label>
+            <select id="q-where">
+              <option value="">All of Siouxland</option>
+              <option>Sioux City, IA</option>
+              <option>South Sioux City, NE</option>
+              <option>North Sioux City, SD</option>
+              <option>Dakota Dunes, SD</option>
+            </select>
+          </div>
+          <button class="btn btn-primary" type="submit">Search</button>
+        </form>
+        <div class="hero-tags">
+          <span>Popular:</span>
+          <a href="#listings/Restaurants" data-nav>Restaurants</a>
+          <a href="#listings/Coffee & Cafes" data-nav>Coffee</a>
+          <a href="#listings/Bars & Nightlife" data-nav>Nightlife</a>
+          <a href="#listings/Health, Beauty & Spa" data-nav>Spa & Beauty</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="wrap">
+      <div class="stat"><b id="stat-biz">105</b><span>Local businesses</span></div>
+      <div class="stat"><b>10</b><span>Categories</span></div>
+      <div class="stat"><b>3</b><span>States, one Siouxland</span></div>
+      <div class="stat"><b>100%</b><span>Locally owned & loved</span></div>
+    </div>
+  </div>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">Browse the directory</div>
+        <h2>Explore by category</h2>
+        <p>From a morning coffee to a night on the town, find exactly what you're looking for across the tri-state.</p>
+      </div>
+      <div class="cat-grid" id="catGrid"></div>
+    </div>
+  </section>
+
+  <section class="sec" style="background:var(--bg-soft)">
+    <div class="wrap">
+      <div class="sec-head" style="display:flex;justify-content:space-between;align-items:flex-end;max-width:none;gap:20px;flex-wrap:wrap">
+        <div style="max-width:560px">
+          <div class="eyebrow">Handpicked</div>
+          <h2>Featured local favourites</h2>
+          <p>A few of the places Siouxland can't stop talking about.</p>
+        </div>
+        <a class="btn btn-ghost" href="#listings" data-nav="listings">View all businesses →</a>
+      </div>
+      <div class="cards" id="featuredGrid"></div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <div>
+        <div class="eyebrow">For business owners</div>
+        <h2 style="font-size:clamp(27px,3.2vw,38px);margin:12px 0 14px">Get discovered by more Siouxland customers</h2>
+        <p style="color:var(--muted);font-size:17px">Claim your free listing and reach neighbours searching for exactly what you offer — right here in the tri-state.</p>
+        <div class="steps">
+          <div class="step"><div class="n">1</div><div><h4>Create your listing</h4><p>Add your business, photos, hours and contact details in minutes.</p></div></div>
+          <div class="step"><div class="n">2</div><div><h4>Get found locally</h4><p>Appear in searches and category pages across the directory.</p></div></div>
+          <div class="step"><div class="n">3</div><div><h4>Grow with reviews & offers</h4><p>Collect reviews, post deals and turn browsers into loyal regulars.</p></div></div>
+        </div>
+        <a class="btn btn-orange" style="margin-top:28px" href="#pricing" data-nav="pricing">List your business — free</a>
+      </div>
+      <div class="band-card">
+        <h3>Why local businesses choose Go Local</h3>
+        <div class="tick"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Hyper-local audience actively searching nearby</div>
+        <div class="tick"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Beautiful, mobile-friendly business profile</div>
+        <div class="tick"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Reviews, photos, offers and analytics</div>
+        <div class="tick"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> A free plan to start — upgrade anytime</div>
+        <a class="btn btn-primary" style="width:100%;justify-content:center;margin-top:24px" href="#pricing" data-nav="pricing">See plans & pricing</a>
+      </div>
+    </div>
+  </section>
+</section>
+
+<!-- ===== LISTINGS ===== -->
+<section class="view" id="view-listings">
+  <div class="page-head">
+    <div class="wrap">
+      <h1 id="listings-title">Explore Siouxland</h1>
+      <p id="listings-sub">Browse every local business in the directory.</p>
+      <div class="toolbar">
+        <div class="search-in">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5c6672" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          <input type="text" id="listSearch" placeholder="Search by name, category or keyword…" oninput="applyFilters()" />
+        </div>
+        <select id="listCity" onchange="applyFilters()">
+          <option value="">All locations</option>
+          <option>Sioux City</option>
+          <option>South Sioux City</option>
+          <option>North Sioux City</option>
+          <option>Dakota Dunes</option>
+        </select>
+        <select id="listSort" onchange="applyFilters()">
+          <option value="rating">Sort: Top rated</option>
+          <option value="name">Sort: A–Z</option>
+        </select>
+      </div>
+      <div class="chips" id="catChips"></div>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="result-count" id="resultCount"></div>
+    <div class="cards" id="listGrid"></div>
+    <div id="noResults" style="display:none;text-align:center;padding:60px 0;color:var(--muted)">No businesses match your search. Try clearing filters.</div>
+  </div>
+</section>
+
+<!-- ===== DETAIL ===== -->
+<section class="view" id="view-listing">
+  <div id="detailContent"></div>
+</section>
+
+<!-- ===== PRICING ===== -->
+<section class="view" id="view-pricing">
+  <div class="page-head">
+    <div class="wrap" style="text-align:center">
+      <h1>Plans for every local business</h1>
+      <p style="max-width:56ch;margin:8px auto 0">Start free and upgrade when you're ready. No contracts, cancel anytime.</p>
+    </div>
+  </div>
+  <section class="sec">
+    <div class="wrap">
+      <div class="toggle">
+        <span>Monthly</span>
+        <div class="switch off" id="billSwitch" onclick="toggleBilling()"><i></i></div>
+        <span>Annual <span class="save-badge">Save 20%</span></span>
+      </div>
+      <div class="price-grid">
+        <div class="plan">
+          <h3>Basic</h3>
+          <div class="p"><b>Free</b></div>
+          <div class="sub">Everything you need to get on the map.</div>
+          <ul>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Standard business listing</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Category & search placement</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Map, hours & contact info</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Up to 3 photos</li>
+          </ul>
+          <a class="btn btn-ghost" style="justify-content:center" href="#" onclick="alert('Business sign-up is coming soon.');return false;">Get started</a>
+        </div>
+        <div class="plan pop">
+          <h3>Featured</h3>
+          <div class="p"><b data-m="29" data-a="279">$29</b><span data-suf>/mo</span></div>
+          <div class="sub">Stand out and rise to the top of your category.</div>
+          <ul>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Everything in Basic</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Featured placement in category</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Up to 15 photos + gallery</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Customer reviews & ratings</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Post offers & coupons</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Performance analytics</li>
+          </ul>
+          <a class="btn btn-primary" style="justify-content:center" href="#" onclick="alert('Business sign-up is coming soon.');return false;">Start Featured</a>
+        </div>
+        <div class="plan">
+          <h3>Premium</h3>
+          <div class="p"><b data-m="79" data-a="759">$79</b><span data-suf>/mo</span></div>
+          <div class="sub">Maximum visibility for serious local growth.</div>
+          <ul>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Everything in Featured</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Homepage spotlight rotation</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Verified business badge</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Unlimited photos + video</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Lead capture forms</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Priority support</li>
+          </ul>
+          <a class="btn btn-ghost" style="justify-content:center" href="#" onclick="alert('Business sign-up is coming soon.');return false;">Go Premium</a>
+        </div>
+      </div>
+
+      <div class="faq">
+        <h2 style="text-align:center;font-size:30px;margin-bottom:8px">Frequently asked questions</h2>
+        <div class="qa"><h4>Is the Basic plan really free?</h4><p>Yes. You can create and manage a standard listing at no cost, forever. Upgrade only if you want more visibility and features.</p></div>
+        <div class="qa"><h4>Who can list on Go Local Siouxland?</h4><p>Any business serving the tri-state area — Sioux City, South Sioux City, North Sioux City, Dakota Dunes and the surrounding communities.</p></div>
+        <div class="qa"><h4>Can I change or cancel my plan?</h4><p>Absolutely. Plans are month-to-month with no contracts — upgrade, downgrade or cancel anytime from your dashboard.</p></div>
+        <div class="qa"><h4>How do featured placements work?</h4><p>Featured and Premium listings appear above standard results within their category and in rotating homepage spotlights.</p></div>
+      </div>
+    </div>
+  </section>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand"><img src="assets/img/golocal-logo.png" alt="" /> Go Local Siouxland</div>
+        <p>Siouxland's premier business directory — helping neighbours discover and support the best of the tri-state area.</p>
+        <div class="socials" style="margin-top:18px">
+          <a href="#" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-2 0-3 1-3 3v2H9v3h2v6h3v-6h2.5l.5-3H14V9z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="X"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h3l-7 8 8 12h-6l-5-7-5 7H0l8-10L0 2h6l4 6 8-6z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h5>Discover</h5>
+        <div class="foot-links">
+          <a href="#listings/Restaurants" data-nav>Restaurants</a>
+          <a href="#listings/Coffee & Cafes" data-nav>Coffee & Cafés</a>
+          <a href="#listings/Bars & Nightlife" data-nav>Nightlife</a>
+          <a href="#listings/Shopping & Retail" data-nav>Shopping</a>
+          <a href="#listings" data-nav="listings">All categories</a>
+        </div>
+      </div>
+      <div>
+        <h5>For Businesses</h5>
+        <div class="foot-links">
+          <a href="#pricing" data-nav="pricing">Add your business</a>
+          <a href="#pricing" data-nav="pricing">Plans & pricing</a>
+          <a href="#" onclick="alert('Coming soon.');return false;">Success stories</a>
+          <a href="#" onclick="alert('Coming soon.');return false;">Help centre</a>
+        </div>
+      </div>
+      <div>
+        <h5>Siouxland</h5>
+        <div class="foot-links">
+          <a href="#">Sioux City, IA</a>
+          <a href="#">South Sioux City, NE</a>
+          <a href="#">North Sioux City, SD</a>
+          <a href="#">Dakota Dunes, SD</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Go Local Siouxland. All rights reserved.</span>
+      <span>Eat • Drink • Shop • Explore — locally.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const BUSINESSES = [{"name": "Marto Brewing Company", "category": "Restaurants", "city": "Sioux City", "state": "IA", "description": "Craft brewery and restaurant known for wood-fired Neapolitan pizza and creative house-brewed beers", "address": "930 4th St, Sioux City, IA 51101", "phone": "(712) 226-2337", "website": "https://martobrewing.com/", "rating": 4.5, "priceLevel": "$$"}, {"name": "SoHo Kitchen & Bar", "category": "Restaurants", "city": "Sioux City", "state": "IA", "description": "American comfort-food restaurant with the largest tap and local craft beer selection in NW Iowa", "address": "1024 4th St, Sioux City, IA 51101", "phone": "(712) 560-8841", "website": "https://www.sohokitchenandbar.com/", "rating": 4.5, "priceLevel": "$$"}, {"name": "Woodbury's Steakhouse", "category": "Restaurants", "city": "Sioux City", "state": "IA", "description": "Upscale historic steakhouse known for dry-aged steaks, fresh seafood and signature cocktails", "address": "525 6th St, Sioux City, IA 51101", "phone": null, "website": null, "rating": 4.3, "priceLevel": "$$$"}, {"name": "Table 32", "category": "Restaurants", "city": "Sioux City", "state": "IA", "description": "Craft food and spirits restaurant set in a historic early-1900s creamery building downtown", "address": "100 Virginia St, Sioux City, IA 51101", "phone": null, "website": "https://tablethirtytwo.com/", "rating": 4.6, "priceLevel": "$$"}, {"name": "1854 Grille", "category": "Restaurants", "city": "Sioux City", "state": "IA", "description": "Family-friendly downtown restaurant serving classic American burgers, steaks and comfort food", "address": "701 Gordon Drive, Sioux City, IA 51101", "phone": "(712) 224-1854", "website": "https://www.1854grille.com/", "rating": 4.4, "priceLevel": "$$"}, {"name": "CRAVE American Kitchen & Sushi Bar", "category": "Restaurants", "city": "Sioux City", "state": "IA", "description": "Riverside restaurant blending American cuisine with a sushi bar in a chic, buzzing atmosphere", "address": "1110 Larsen Park Rd, Sioux City, IA 51103", "phone": "(712) 224-2386", "website": "http://www.craveamerica.com/", "rating": 4.6, "priceLevel": "$$"}, {"name": "Jackson Street Brewing", "category": "Bars & Nightlife", "city": "Sioux City", "state": "IA", "description": "Family-owned craft brewery with two downtown taprooms serving house beers, pizza and street tacos", "address": "901 5th St, Sioux City, IA 51101", "phone": "(712) 226-2739", "website": "https://jacksonstreet.beer/", "rating": 4.7, "priceLevel": "$"}, {"name": "Main + Abbey at Hard Rock", "category": "Bars & Nightlife", "city": "Sioux City", "state": "IA", "description": "British-inspired rock-themed bar and restaurant inside Hard Rock Casino with craft beers and live music", "address": "111 3rd St, Sioux City, IA 51101", "phone": "(712) 226-7610", "website": "https://www.hardrockcasinosiouxcity.com/", "rating": 4.3, "priceLevel": "$$"}, {"name": "The Warp Zone Bar & Arcade", "category": "Bars & Nightlife", "city": "Sioux City", "state": "IA", "description": "Retro-themed arcade bar downtown offering classic video games alongside craft beers and cocktails", "address": "611 5th St, Sioux City, IA 51101", "phone": null, "website": "https://www.thewarpzone.biz/", "rating": 4.6, "priceLevel": "$"}, {"name": "Crash Boom Bang Whiskey Hole", "category": "Bars & Nightlife", "city": "Sioux City", "state": "IA", "description": "Whiskey-focused cocktail bar in downtown Sioux City known for its deep bourbon and whiskey selection", "address": "1024 4th St, Sioux City, IA 51101", "phone": null, "website": null, "rating": 4.5, "priceLevel": "$$"}, {"name": "Hardline Coffee Co", "category": "Coffee & Cafes", "city": "Sioux City", "state": "IA", "description": "Downtown coffee shop with a spacious eclectic interior known for craft lattes and seasonal drinks", "address": "1004 4th St, Sioux City, IA 51101", "phone": "(712) 666-0498", "website": "https://www.hardlinecoffeeco.com/", "rating": 4.7, "priceLevel": "$"}, {"name": "Council Oak Supply", "category": "Coffee & Cafes", "city": "Sioux City", "state": "IA", "description": "Third-wave coffee roaster and parlor in a historic building offering whole bean and fresh drinks", "address": "101 W 3rd St, Sioux City, IA 51101", "phone": null, "website": "https://www.counciloakcoffee.com/", "rating": 4.9, "priceLevel": "$"}, {"name": "Big Mama's Coffee & More", "category": "Coffee & Cafes", "city": "Sioux City", "state": "IA", "description": "Independent neighborhood coffee shop praised for hospitality, expertly roasted coffee and community feel", "address": "500 Nebraska St, Sioux City, IA 51101", "phone": "(712) 560-9406", "website": null, "rating": 4.7, "priceLevel": "$"}, {"name": "Brightside Cafe & Deli", "category": "Coffee & Cafes", "city": "Sioux City", "state": "IA", "description": "Family-run breakfast and brunch cafe known for an uplifting atmosphere and fresh-brewed coffee", "address": "525 4th St, Sioux City, IA 51101", "phone": null, "website": "https://siouxcitybrightside.com/", "rating": 4.5, "priceLevel": "$"}, {"name": "Southern Hills Mall", "category": "Shopping & Retail", "city": "Sioux City", "state": "IA", "description": "Region's only enclosed shopping mall with over 100 specialty stores, anchored by JCPenney and Scheels", "address": "4400 Sergeant Rd, Sioux City, IA 51106", "phone": null, "website": "https://southernhillsmall.com/", "rating": 4.3, "priceLevel": "$$"}, {"name": "Scheels", "category": "Shopping & Retail", "city": "Sioux City", "state": "IA", "description": "Massive sporting goods and outdoor lifestyle store with a 55-foot indoor tree centerpiece", "address": "4400 Sergeant Rd #54, Sioux City, IA 51106", "phone": null, "website": "https://www.scheels.com/", "rating": 4.7, "priceLevel": "$$"}, {"name": "Lakeport Commons", "category": "Shopping & Retail", "city": "Sioux City", "state": "IA", "description": "Open-air shopping center anchored by Best Buy and Kohl's with dozens of national retailers and restaurants", "address": "5101 Sergeant Rd, Sioux City, IA 51106", "phone": null, "website": null, "rating": 4.4, "priceLevel": "$$"}, {"name": "Rooted Boutique", "category": "Shopping & Retail", "city": "Sioux City", "state": "IA", "description": "Upscale downtown clothing boutique with lounge-style dressing rooms and personal styling", "address": "505 6th St, Suite D, Sioux City, IA 51101", "phone": "(712) 224-9650", "website": "https://shoprootedinstyle.com/", "rating": 4.8, "priceLevel": "$$"}, {"name": "Brock's Big Outdoors", "category": "Shopping & Retail", "city": "North Sioux City", "state": "SD", "description": "Sporting goods and hunting outfitter carrying firearms, ammunition, optics and outdoor gear", "address": "One Valley Dr, North Sioux City, SD 57049", "phone": null, "website": "https://brocksbigoutdoors.com/", "rating": 4.6, "priceLevel": "$$"}, {"name": "K & K Nails Spa", "category": "Health, Beauty & Spa", "city": "South Sioux City", "state": "NE", "description": "Nail salon and spa offering manicures, pedicures and a private VIP party room for events", "address": "2323 Dakota Ave, South Sioux City, NE 68776", "phone": "(402) 404-9009", "website": "https://kandknailsspa.com/", "rating": 4.6, "priceLevel": "$$"}, {"name": "Himelda's Beauty Salon", "category": "Health, Beauty & Spa", "city": "South Sioux City", "state": "NE", "description": "Family-friendly hair salon open since 2000 offering affordable haircare for clients of all ages", "address": "2215 Dakota Ave, South Sioux City, NE 68776", "phone": "(402) 241-1806", "website": null, "rating": 4.5, "priceLevel": "$"}, {"name": "Ellis Nails", "category": "Health, Beauty & Spa", "city": "South Sioux City", "state": "NE", "description": "Nail salon providing professional manicures, pedicures and waxing in a clean, welcoming setting", "address": "2816 Dakota Ave, South Sioux City, NE 68776", "phone": "(402) 404-0996", "website": "http://www.ellisnailssalon.com/", "rating": 4.4, "priceLevel": "$"}, {"name": "Poet Noel Beauty Bar", "category": "Health, Beauty & Spa", "city": "South Sioux City", "state": "NE", "description": "Full-service salon offering haircuts, coloring, braiding, scalp treatments and barber services", "address": "3121 Dakota Ave, South Sioux City, NE 68776", "phone": null, "website": "https://poetnoelbeautybar.com/", "rating": 4.7, "priceLevel": "$$"}, {"name": "Beo Strength and Fitness", "category": "Fitness & Recreation", "city": "Sioux City", "state": "IA", "description": "CrossFit-affiliated gym offering group classes, personal training and nutrition coaching near I-29", "address": "4101 War Eagle Dr, Sioux City, IA 51109", "phone": null, "website": "https://beostrengthandfitness.com/", "rating": 4.9, "priceLevel": "$$"}, {"name": "Siouxland Family YMCA", "category": "Fitness & Recreation", "city": "Sioux City", "state": "IA", "description": "Community fitness organization offering gym facilities, sports leagues and youth development programs", "address": "722 Nebraska St, Sioux City, IA 51101", "phone": null, "website": "https://www.nwsymca.org/", "rating": 4.5, "priceLevel": "$$"}, {"name": "712FIT", "category": "Fitness & Recreation", "city": "Sioux City", "state": "IA", "description": "Fitness studio offering personal training, circuit classes and nutrition consultations for all levels", "address": "901 5th St, Sioux City, IA 51101", "phone": "(712) 898-1946", "website": "https://www.712fit.com/", "rating": 4.8, "priceLevel": "$$"}, {"name": "HOTWORX Sioux City", "category": "Fitness & Recreation", "city": "Sioux City", "state": "IA", "description": "24-hour infrared fitness studio offering hot yoga, HIIT, cycling and sauna-based workouts", "address": "5826 Sunnybrook Dr, Sioux City, IA 51106", "phone": null, "website": "https://www.hotworx.net/", "rating": 4.6, "priceLevel": "$$"}, {"name": "Dunes Realty", "category": "Home & Professional Services", "city": "Dakota Dunes", "state": "SD", "description": "Real estate brokerage licensed in Iowa and South Dakota serving Siouxland home buyers and sellers", "address": "335 Sioux Point Rd, Suite 100, Dakota Dunes, SD 57049", "phone": "(605) 422-1413", "website": "https://www.dunesrealtysiouxland.com/", "rating": 4.7, "priceLevel": null}, {"name": "J & M Real Estate Group", "category": "Home & Professional Services", "city": "Dakota Dunes", "state": "SD", "description": "Full-service real estate company handling residential and commercial sales across the tri-state area", "address": "319 Dakota Dunes Blvd, Ste B, Dakota Dunes, SD 57049", "phone": "(605) 232-1819", "website": "https://www.jandmrealestate.com/", "rating": 4.8, "priceLevel": null}, {"name": "Crary Huff Law Firm", "category": "Home & Professional Services", "city": "Sioux City", "state": "IA", "description": "Established Siouxland law firm founded in 1896 handling business, estate, real estate and family law", "address": "329 Pierce St, Suite 200, Sioux City, IA 51101", "phone": null, "website": "https://craryhuff.com/", "rating": 4.6, "priceLevel": null}, {"name": "King, Reinsch, Prosser & Co.", "category": "Home & Professional Services", "city": "Sioux City", "state": "IA", "description": "Certified public accounting and financial advisory firm serving the tri-state area for over a century", "address": "522 Fourth St, Suite 200, Sioux City, IA 51101", "phone": null, "website": "https://krpcpa.com/", "rating": 4.5, "priceLevel": null}, {"name": "Deck & Deck Law Firm", "category": "Home & Professional Services", "city": "Sioux City", "state": "IA", "description": "Family-owned law firm since 1950 specializing in insurance defense, workers comp and corporate law", "address": "505 5th St, Suite 635, Sioux City, IA 51101", "phone": "(712) 255-3573", "website": "https://www.deckanddeck.com/", "rating": 4.5, "priceLevel": null}, {"name": "Tott's Auto Center", "category": "Automotive", "city": "Sioux City", "state": "IA", "description": "Bilingual family-owned repair shop since 1954 serving the tri-state area with brakes, tires and diagnostics", "address": "1919 Court St, Sioux City, IA 51104", "phone": "(712) 277-4751", "website": "https://www.tottsautocenter.com/", "rating": 4.7, "priceLevel": "$$"}, {"name": "Zenk Auto Repair", "category": "Automotive", "city": "Sioux City", "state": "IA", "description": "Full-service auto repair shop since 1975 specializing in Chevrolet and Corvette repairs for all makes", "address": "2101 E 4th St, Sioux City, IA 51101", "phone": "(712) 277-9068", "website": "https://www.zenkautorepair.com/", "rating": 4.8, "priceLevel": "$$"}, {"name": "Mac's Auto Repair", "category": "Automotive", "city": "Sioux City", "state": "IA", "description": "Locally trusted car service shop known for customer-focused, honest and reliable auto repair", "address": "1002 5th St, Sioux City, IA 51101", "phone": "(712) 252-4203", "website": "https://macsautorepairscia.com/", "rating": 4.7, "priceLevel": "$$"}, {"name": "Sioux City Ford Lincoln", "category": "Automotive", "city": "Sioux City", "state": "IA", "description": "Ford and Lincoln dealership with a certified in-house service center for maintenance and repairs", "address": "3601 Singing Hills Blvd, Sioux City, IA 51106", "phone": "(712) 277-8420", "website": "https://www.siouxcityford.com/", "rating": 4.4, "priceLevel": "$$$"}, {"name": "Hard Rock Hotel & Casino", "category": "Hotels & Lodging", "city": "Sioux City", "state": "IA", "description": "AAA Four Diamond boutique hotel in a historic downtown building with attached casino and dining", "address": "111 3rd St, Sioux City, IA 51101", "phone": "(712) 226-7625", "website": "https://www.hardrockcasinosiouxcity.com/", "rating": 4.4, "priceLevel": "$$$"}, {"name": "Stoney Creek Hotel", "category": "Hotels & Lodging", "city": "Sioux City", "state": "IA", "description": "Downtown riverfront hotel with indoor and outdoor pools near Missouri River attractions", "address": "300 3rd St, Sioux City, IA 51101", "phone": "(712) 234-1100", "website": "https://www.stoneycreekhotels.com/", "rating": 4.4, "priceLevel": "$$"}, {"name": "avid hotel Downtown", "category": "Hotels & Lodging", "city": "Sioux City", "state": "IA", "description": "Value-focused downtown hotel with pillow-top mattresses, free breakfast and pet-friendly rooms", "address": "101 Court St, Sioux City, IA 51101", "phone": "(712) 522-3640", "website": "https://www.ihg.com/", "rating": 4.3, "priceLevel": "$$"}, {"name": "Holiday Inn Express Southern Hills", "category": "Hotels & Lodging", "city": "Sioux City", "state": "IA", "description": "Award-winning hotel with indoor pool near Southern Hills Mall and Lakeport Commons shopping", "address": "4723 Southern Hills Dr, Sioux City, IA 51106", "phone": "(712) 274-0100", "website": "https://www.ihg.com/", "rating": 4.5, "priceLevel": "$$"}, {"name": "Orpheum Theatre", "category": "Arts, Culture & Entertainment", "city": "Sioux City", "state": "IA", "description": "Historic 1927 vaudeville palace on the National Register hosting concerts, ballet and Broadway tours", "address": "528 Pierce St, Sioux City, IA 51101", "phone": null, "website": "https://www.orpheumlive.com/", "rating": 4.8, "priceLevel": null}, {"name": "Sioux City Public Museum", "category": "Arts, Culture & Entertainment", "city": "Sioux City", "state": "IA", "description": "Local history museum with exhibits on the region's people, culture and heritage", "address": "607 4th St, Sioux City, IA 51101", "phone": null, "website": "https://www.siouxcitymuseum.org/", "rating": 4.6, "priceLevel": null}, {"name": "Sioux City Art Center", "category": "Arts, Culture & Entertainment", "city": "Sioux City", "state": "IA", "description": "Free award-winning art museum with rotating exhibitions and a permanent collection since 1938", "address": "225 Nebraska St, Sioux City, IA 51101", "phone": null, "website": "https://siouxcityartcenter.org/", "rating": 4.7, "priceLevel": null}, {"name": "Sioux City Community Theatre", "category": "Arts, Culture & Entertainment", "city": "Sioux City", "state": "IA", "description": "Nonprofit community theatre staging mainstage musicals, plays and youth theatre productions", "address": "1401 Riverside Blvd, Sioux City, IA 51109", "phone": "(712) 233-2788", "website": "https://scctheatre.org/", "rating": 4.7, "priceLevel": null}, {"name": "Tyson Events Center", "category": "Arts, Culture & Entertainment", "city": "Sioux City", "state": "IA", "description": "Premier regional arena hosting concerts, hockey, arena football and major touring events", "address": "401 Gordon Dr, Sioux City, IA 51101", "phone": null, "website": "https://www.tysoncenter.com/", "rating": 4.6, "priceLevel": null}, {"name": "La Fogata Taqueria", "category": "Restaurants", "city": "Sioux City", "state": "IA", "description": "Authentic homestyle Mexican restaurant known for fresh salsas, handmade tortillas, and asada tacos", "address": "1919 Pierce St, Sioux City, IA", "phone": "(712) 560-0050", "website": null, "rating": 4.5, "priceLevel": "$"}, {"name": "El Tapatio Restaurant", "category": "Restaurants", "city": "Sioux City", "state": "IA", "description": "Popular Mexican restaurant serving carne asada, enchiladas, margaritas, and fried ice cream", "address": "3400 Gordon Dr, Sioux City, IA", "phone": "(712) 276-2133", "website": null, "rating": 4.6, "priceLevel": "$"}, {"name": "Da Kao Restaurant", "category": "Restaurants", "city": "Sioux City", "state": "IA", "description": "Family-founded Vietnamese and Chinese restaurant serving pho, spring rolls, and traditional handmade dishes since 1994", "address": "800 West 7th Street, Sioux City, IA 51103", "phone": "(712) 252-3937", "website": "https://www.dakaosc.com/", "rating": 4.5, "priceLevel": "$"}, {"name": "Diamond Thai Cuisine", "category": "Restaurants", "city": "Sioux City", "state": "IA", "description": "Authentic Thai restaurant offering curries, wok noodles, seafood, and fresh rice paper wraps", "address": "515 W 7th St, Sioux City, IA 51103", "phone": null, "website": "https://www.diamondthaicuisineia.com/", "rating": 4.6, "priceLevel": "$$"}, {"name": "Four Seasons Restaurant", "category": "Restaurants", "city": "Sioux City", "state": "IA", "description": "Family-friendly Vietnamese, Thai and Chinese restaurant known for pho, crab rangoon, and Thai tea", "address": "401 W 7th St, Sioux City, IA", "phone": null, "website": null, "rating": 4.4, "priceLevel": "$"}, {"name": "Blue Tequila", "category": "Restaurants", "city": "Sergeant Bluff", "state": "IA", "description": "Mexican restaurant featuring seafood and desserts along with traditional dishes in Sergeant Bluff", "address": "148 Gaul Dr, Sergeant Bluff, IA 51054", "phone": "(712) 943-1478", "website": "https://www.bluetequilarestaurant.com/", "rating": 4.4, "priceLevel": "$$"}, {"name": "Buffalo Alice", "category": "Bars & Nightlife", "city": "Sioux City", "state": "IA", "description": "Local favorite bar and restaurant on Fourth Street known for pizza and a wide drink selection", "address": "1022 4th St, Sioux City, IA 51101", "phone": null, "website": "https://www.buffaloalice.com/", "rating": 4.5, "priceLevel": "$"}, {"name": "Steinbeck's Pub", "category": "Bars & Nightlife", "city": "Sioux City", "state": "IA", "description": "Neighborhood sports bar and grill in Leeds offering casual food, drink specials, and community events", "address": "3929 Floyd Blvd, Sioux City, IA", "phone": null, "website": "https://www.steinbeckspub.com/", "rating": 4.5, "priceLevel": "$"}, {"name": "Brioux City Brewery", "category": "Bars & Nightlife", "city": "Sioux City", "state": "IA", "description": "Local pub and brewery serving a variety of house-made beers and ciders in a casual setting", "address": "1306 Court Street, Sioux City, IA", "phone": null, "website": "https://www.briouxcity.com/", "rating": 4.6, "priceLevel": "$$"}, {"name": "The Wheelhouse Bar and Grill", "category": "Bars & Nightlife", "city": "Sioux City", "state": "IA", "description": "Family-friendly sports bar with 42 TVs, 20 beers on tap, burgers, pizza, and wings", "address": "4501 Southern Hills Drive #1, Sioux City, IA 51106", "phone": null, "website": "https://www.wheelhousebarandgrill.com/", "rating": 4.4, "priceLevel": "$$"}, {"name": "La Palma Lounge Night Club", "category": "Bars & Nightlife", "city": "Sioux City", "state": "IA", "description": "Latin nightclub featuring reggaeton, Latin music nights, and innovative cocktails for guests 21 and up", "address": "420 Jackson St, Sioux City, IA 51101", "phone": null, "website": "https://www.lapalmaloungenightclub.com/", "rating": 4.3, "priceLevel": "$$"}, {"name": "Anthem Bar at Hard Rock", "category": "Bars & Nightlife", "city": "Sioux City", "state": "IA", "description": "Concert venue and bar inside Hard Rock Casino featuring slots, sports viewing, and live entertainment", "address": "111 3rd St, Sioux City, IA 51101", "phone": null, "website": "https://www.hardrockcasinosiouxcity.com/", "rating": 4.3, "priceLevel": "$$"}, {"name": "Coffee King Roasting and Supply Co.", "category": "Coffee & Cafes", "city": "Sioux City", "state": "IA", "description": "Local coffee roaster and supply shop known for quality bean roasting and a loyal Siouxland following", "address": "Sioux City, IA", "phone": null, "website": null, "rating": 4.7, "priceLevel": "$"}, {"name": "Brekky's", "category": "Coffee & Cafes", "city": "Sioux City", "state": "IA", "description": "Gallery-style cafe serving house-roasted coffee, brunch, and cocktail flights in downtown Sioux City", "address": "Downtown Sioux City, IA", "phone": null, "website": "https://downtownsiouxcity.com/", "rating": 4.6, "priceLevel": "$"}, {"name": "SweetWater Cafe", "category": "Coffee & Cafes", "city": "Sioux City", "state": "IA", "description": "Coffee shop with locations in Sioux City and South Sioux City offering specialty drinks and lunch", "address": "600 4th St, Sioux City, IA", "phone": null, "website": "https://www.sweetwatercafe.net/", "rating": 4.3, "priceLevel": "$"}, {"name": "The Coffee Spot", "category": "Coffee & Cafes", "city": "Sioux City", "state": "IA", "description": "Independent cafe serving quality coffee, tea, and breakfast in a welcoming neighborhood atmosphere", "address": "5001 Sergeant Rd, Sioux City, IA 51106", "phone": "(712) 274-6400", "website": null, "rating": 4.8, "priceLevel": "$"}, {"name": "Pierce Street Coffee Works", "category": "Coffee & Cafes", "city": "Sioux City", "state": "IA", "description": "Locally loved coffee shop known for quality espresso drinks and a friendly neighborhood vibe", "address": "Sioux City, IA", "phone": null, "website": null, "rating": 4.8, "priceLevel": "$"}, {"name": "Stone Bru Coffee Company", "category": "Coffee & Cafes", "city": "Sioux City", "state": "IA", "description": "Local coffee roaster and cafe offering specialty drinks near the Sunnybrook shopping area", "address": "5525 Sunnybrook Dr, Sioux City, IA 51106", "phone": null, "website": "https://www.stonebru.com/", "rating": 4.6, "priceLevel": "$"}, {"name": "E & Co. Boutique", "category": "Shopping & Retail", "city": "Sioux City", "state": "IA", "description": "Family-owned women's clothing boutique offering curated apparel for all ages at The Marketplace", "address": "2919 Hamilton Blvd, Sioux City, IA 51104", "phone": null, "website": "https://eandcoboutique.com/", "rating": 4.8, "priceLevel": "$$"}, {"name": "Gunderson's Jewelers", "category": "Shopping & Retail", "city": "Sioux City", "state": "IA", "description": "Iowa's largest jewelry store offering fine jewelry, diamonds, watches, and custom design since 1945", "address": "4830 Sergeant Road, Sioux City, IA 51106", "phone": null, "website": "https://gundersons.com/", "rating": 4.8, "priceLevel": "$$$"}, {"name": "Mod House Interiors", "category": "Shopping & Retail", "city": "Sioux City", "state": "IA", "description": "Modern home decor and furniture showroom featuring curated styled room setups and unique furniture pieces", "address": "255 5th Street, Sioux City, IA", "phone": null, "website": "https://www.modhouseinteriors.com/", "rating": 4.7, "priceLevel": "$$"}, {"name": "Whistle Stop Antique Shop", "category": "Shopping & Retail", "city": "Sioux City", "state": "IA", "description": "Multi-vendor antique shop specializing in Arts and Crafts furniture, jewelry, lighting, and vintage collectibles", "address": "506 Nebraska St, Sioux City, IA 51101", "phone": null, "website": null, "rating": 4.6, "priceLevel": "$$"}, {"name": "Mozak's Furniture", "category": "Shopping & Retail", "city": "Sioux City", "state": "IA", "description": "Locally owned furniture and flooring retailer offering name-brand furnishings, carpet, and hardwood at discount prices", "address": "Sioux City, IA", "phone": null, "website": "https://www.mozaksfurniture.com/", "rating": 4.5, "priceLevel": "$$"}, {"name": "Jones Eye Clinic", "category": "Health, Beauty & Spa", "city": "Sioux City", "state": "IA", "description": "Comprehensive eye care and cosmetic vision clinic serving Siouxland since 1971", "address": "4405 Hamilton Blvd, Sioux City, IA 51104", "phone": null, "website": "https://joneseye.com/", "rating": 4.7, "priceLevel": "$$"}, {"name": "Korver Eyecare Center", "category": "Health, Beauty & Spa", "city": "Sioux City", "state": "IA", "description": "Family optometry practice offering same-day glasses, contact lenses, and eye exams for over 60 years", "address": "3535 Southern Hills Dr, Sioux City, IA 51106", "phone": "(712) 276-2323", "website": "https://www.korvereyecare.com/", "rating": 4.7, "priceLevel": "$$"}, {"name": "Belle Salon & Spa", "category": "Health, Beauty & Spa", "city": "Sioux City", "state": "IA", "description": "Luxury salon and spa using Aveda and LANZA products, voted among Siouxland's best hair salons", "address": "5001 Sergeant Rd, Sioux City, IA 51106", "phone": null, "website": "https://bellesalonspa.com/", "rating": 4.7, "priceLevel": "$$$"}, {"name": "Platinum Noir Salon and Barbershop", "category": "Health, Beauty & Spa", "city": "Sioux City", "state": "IA", "description": "Full-service salon and barbershop offering haircuts, fades, braids, lash extensions, and microblading", "address": "5001 Sergeant Rd Suite 395, Sioux City, IA 51106", "phone": null, "website": "https://platinumnoirsiouxcity.com/", "rating": 4.7, "priceLevel": "$$"}, {"name": "The Suite Era", "category": "Health, Beauty & Spa", "city": "Sioux City", "state": "IA", "description": "Luxury salon-suite and beauty collective offering hair styling, shampoo spa, and hair-loss clinic services", "address": "509 7th Street, Sioux City, IA 51101", "phone": null, "website": "https://www.thesuiteera.com/", "rating": 4.8, "priceLevel": "$$"}, {"name": "Bespoke Salon", "category": "Health, Beauty & Spa", "city": "Sioux City", "state": "IA", "description": "Full-service urban hair salon and spa located in downtown Sioux City", "address": "422 5th Street, Sioux City, IA 51101", "phone": "(712) 253-1835", "website": "http://www.bespoke-salon.com/", "rating": 4.7, "priceLevel": "$$"}, {"name": "Evolve Yoga and Wellness Center", "category": "Fitness & Recreation", "city": "Sioux City", "state": "IA", "description": "Yoga studio and wellness center offering meditation, massage therapy, and varied yoga styles for balance", "address": "1014 Design Place, Sioux City, IA 51101", "phone": null, "website": "https://www.evolvesiouxcity.com/", "rating": 4.9, "priceLevel": "$$"}, {"name": "The Yoga College", "category": "Fitness & Recreation", "city": "Sioux City", "state": "IA", "description": "Integrative alignment-based yoga studio led by a Master of Yoga Education for over 20 years", "address": "508 5th Street, Sioux City, IA 51101", "phone": null, "website": "http://theyogacollege.com/", "rating": 4.9, "priceLevel": "$$"}, {"name": "Anytime Fitness South", "category": "Fitness & Recreation", "city": "Sioux City", "state": "IA", "description": "Locally owned 24/7 gym with personalized coaching and access to thousands of locations worldwide", "address": "5920 Sunnybrook Dr, Sioux City, IA 51106", "phone": "(712) 266-2400", "website": "https://www.anytimefitness.com/", "rating": 4.5, "priceLevel": "$$"}, {"name": "Planet Fitness", "category": "Fitness & Recreation", "city": "Sioux City", "state": "IA", "description": "Budget-friendly gym offering cardio and strength equipment plus group fitness in a no-judgment zone", "address": "6001 Gordon Dr, Sioux City, IA 51106", "phone": "(712) 276-2078", "website": "https://www.planetfitness.com/", "rating": 4.2, "priceLevel": "$"}, {"name": "Dakota Dunes Country Club", "category": "Fitness & Recreation", "city": "Dakota Dunes", "state": "SD", "description": "Arnold Palmer-designed 18-hole golf course along the Missouri River with pool, tennis, and fitness", "address": "960 S Dakota Dunes Blvd, Dakota Dunes, SD 57049", "phone": "(605) 232-3080", "website": "https://www.dakotadunescountryclub.com/", "rating": 4.7, "priceLevel": "$$$"}, {"name": "Core Studio", "category": "Fitness & Recreation", "city": "Sioux City", "state": "IA", "description": "Shared yoga and fitness space offering classes, aerial hammocks, and meditation sessions daily", "address": "Sioux City, IA", "phone": null, "website": "https://www.corestudiosiouxcity.com/", "rating": 4.8, "priceLevel": "$$"}, {"name": "RE/MAX Experience", "category": "Home & Professional Services", "city": "Sioux City", "state": "IA", "description": "Real estate brokerage with local REALTORS serving buyers, sellers, and investors across Siouxland", "address": "712 4th St, Sioux City, IA 51101", "phone": "(712) 224-4100", "website": "https://sellsiouxcity.com/", "rating": 4.7, "priceLevel": null}, {"name": "Andersen Investment & Insurance", "category": "Home & Professional Services", "city": "Sioux City", "state": "IA", "description": "Family-owned insurance agency providing auto, home, business, and life insurance policies since 1941", "address": "1306 Pierce St, Sioux City, IA 51105", "phone": "(712) 252-4658", "website": "https://www.anderseninsure.com/", "rating": 4.6, "priceLevel": null}, {"name": "CW Suter Services", "category": "Home & Professional Services", "city": "Sioux City", "state": "IA", "description": "Employee-owned HVAC and plumbing company serving residential and commercial clients since 1926", "address": "1800 11th St, Sioux City, IA 51101", "phone": null, "website": "https://cwsuter.com/", "rating": 4.7, "priceLevel": null}, {"name": "Foulk Brothers Plumbing & Heating", "category": "Home & Professional Services", "city": "Sioux City", "state": "IA", "description": "Fourth-generation family-owned plumbing and heating contractor serving Sioux City since 1900", "address": "322 W 7th St, Sioux City, IA 51103", "phone": "(712) 258-3388", "website": "https://www.foulkbrothers.com/", "rating": 4.7, "priceLevel": null}, {"name": "Sharp Lawn Care", "category": "Home & Professional Services", "city": "Sioux City", "state": "IA", "description": "Lawn care and pest control company serving the tri-state area since 2005 with fertilization and snow removal", "address": "519 W 20th St, Sioux City, IA 51103", "phone": "(712) 253-8024", "website": "https://sharplawncare.com/", "rating": 4.6, "priceLevel": null}, {"name": "Goosmann Law Firm", "category": "Home & Professional Services", "city": "Sioux City", "state": "IA", "description": "Woman-owned Midwest law firm handling business, litigation, estate planning, and real estate matters", "address": "410 5th Street, Sioux City, IA 51101", "phone": "(712) 226-4000", "website": "https://www.goosmannlaw.com/", "rating": 4.5, "priceLevel": null}, {"name": "Sioux Body Shop", "category": "Automotive", "city": "Sioux City", "state": "IA", "description": "Family-owned auto body shop offering collision repair, paintless dent repair, and color-matched painting", "address": "501 W 8th Street, Sioux City, IA 51103", "phone": null, "website": "https://siouxbodyshop.com/", "rating": 4.7, "priceLevel": "$$"}, {"name": "Craft Auto Body & Detail Center", "category": "Automotive", "city": "Sioux City", "state": "IA", "description": "Longtime auto body and detailing shop offering dent repair, frame straightening, and full detailing packages", "address": "524 Chambers St, Sioux City, IA 51101", "phone": null, "website": "https://www.craftautobodyinc.com/", "rating": 4.7, "priceLevel": "$$"}, {"name": "Pomp's Tire Service", "category": "Automotive", "city": "Sioux City", "state": "IA", "description": "Full-service tire shop offering auto, light truck, and commercial tires plus 24-hour road service", "address": "4401 Harbor Drive, Sioux City, IA 51111", "phone": "(712) 277-2199", "website": "https://locations.pompstire.com/", "rating": 4.3, "priceLevel": "$$"}, {"name": "Prestige Collision Repair Centers", "category": "Automotive", "city": "Sioux City", "state": "IA", "description": "Auto body shop offering collision repair and paintless dent removal for hail damage since 1975", "address": "3929 Prestige Blvd, Sioux City, IA 51106", "phone": "(712) 234-1975", "website": "https://prestigecollisionrepaircenters.com/", "rating": 4.6, "priceLevel": "$$"}, {"name": "ABRA Auto Body Sioux City", "category": "Automotive", "city": "Sioux City", "state": "IA", "description": "Full-service auto body repair shop offering glass repair, towing, and paintless dent removal", "address": "2001 East 6th Street, Sioux City, IA 51101", "phone": "(712) 222-1835", "website": "https://www.abraauto.com/", "rating": 4.5, "priceLevel": "$$"}, {"name": "United Auto Body & Collision", "category": "Automotive", "city": "Sioux City", "state": "IA", "description": "Locally owned auto repair shop with 30 years of experience in body repairs and insurance claims", "address": "2305 11th St, Sioux City, IA 51105", "phone": null, "website": "https://www.unitedautobodysc.com/", "rating": 4.6, "priceLevel": "$$"}, {"name": "South Sioux City Marriott Riverfront", "category": "Hotels & Lodging", "city": "South Sioux City", "state": "NE", "description": "Contemporary riverfront Marriott hotel offering modern accommodations along the Missouri River", "address": "385 East 4th Street, South Sioux City, NE 68776", "phone": null, "website": "https://www.marriott.com/", "rating": 4.4, "priceLevel": "$$$"}, {"name": "Cottonwood Inn & Conference Center", "category": "Hotels & Lodging", "city": "South Sioux City", "state": "NE", "description": "Smoke-free hotel with 60 rooms, complimentary breakfast, fitness room, and event conference center", "address": "4402 Dakota Ave, South Sioux City, NE 68776", "phone": null, "website": "https://www.cottonwoodinnandconferencecenter.com/", "rating": 4.2, "priceLevel": "$$"}, {"name": "Knights Inn & Suites", "category": "Hotels & Lodging", "city": "South Sioux City", "state": "NE", "description": "Budget-friendly hotel near Hard Rock offering free breakfast, WiFi, parking, and on-site fitness center", "address": "2829 Dakota Ave, South Sioux City, NE 68776", "phone": "(402) 494-8874", "website": "https://www.knightsinn.com/", "rating": 4.0, "priceLevel": "$"}, {"name": "Budget Host Inn", "category": "Hotels & Lodging", "city": "South Sioux City", "state": "NE", "description": "Budget motel close to the Lewis & Clark Interpretive Center and other Siouxland attractions", "address": "1201 First Ave, South Sioux City, NE 68776", "phone": "(402) 494-2021", "website": "https://www.budgethost.com/", "rating": 4.0, "priceLevel": "$"}, {"name": "Holiday Inn Express Dakota Dunes", "category": "Hotels & Lodging", "city": "Dakota Dunes", "state": "SD", "description": "Modern hotel just off I-29 offering comfortable rooms and complimentary breakfast near Dakota Dunes", "address": "885 Cottonwood Lane, Dakota Dunes, SD 57049", "phone": null, "website": "https://www.ihg.com/", "rating": 4.4, "priceLevel": "$$"}, {"name": "New Victorian Inn & Suites", "category": "Hotels & Lodging", "city": "Sioux City", "state": "IA", "description": "Budget-friendly hotel near Singing Hills offering spacious rooms and business-friendly amenities", "address": "3101 Singing Hills Blvd, Sioux City, IA 51106", "phone": null, "website": null, "rating": 4.1, "priceLevel": "$$"}, {"name": "Art SUX Gallery", "category": "Arts, Culture & Entertainment", "city": "Sioux City", "state": "IA", "description": "Community art gallery and artist studios open to the public with regular exhibitions and studio visits", "address": "Sioux City, IA", "phone": null, "website": "https://www.artsuxgallery.com/", "rating": 4.7, "priceLevel": null}, {"name": "Tilt Studio Southern Hills", "category": "Arts, Culture & Entertainment", "city": "Sioux City", "state": "IA", "description": "Family fun center offering laser tag, mini bowling, arcade games, bumper cars, and mini golf", "address": "4400 Sergeant Rd, Sioux City, IA 51106", "phone": "(712) 317-9480", "website": "https://tiltstudio.com/sioux/", "rating": 4.3, "priceLevel": "$$"}, {"name": "Rush Lanes", "category": "Arts, Culture & Entertainment", "city": "Sioux City", "state": "IA", "description": "Bowling alley and entertainment venue with attached restaurant, full bar, and patio dining", "address": "3828 Stadium Dr, Sioux City, IA 51106", "phone": "(712) 252-4545", "website": null, "rating": 4.4, "priceLevel": "$$"}, {"name": "Plaza Bowl", "category": "Arts, Culture & Entertainment", "city": "Sioux City", "state": "IA", "description": "Family-friendly bowling center with kid-friendly lanes and casual food and drink options", "address": "3091 Hamilton Blvd, Sioux City, IA 51104", "phone": "(712) 255-7663", "website": null, "rating": 4.2, "priceLevel": "$"}, {"name": "Sergeant Floyd River Museum", "category": "Arts, Culture & Entertainment", "city": "Sioux City", "state": "IA", "description": "Historic riverboat museum and welcome center showcasing Missouri River and Lewis and Clark history", "address": "1000 Larsen Park Rd, Sioux City, IA 51103", "phone": null, "website": null, "rating": 4.5, "priceLevel": null}, {"name": "LaunchPAD Children's Museum", "category": "Arts, Culture & Entertainment", "city": "Sioux City", "state": "IA", "description": "Hands-on children's museum featuring a mini town, farming exhibit, indoor climber, and river water table", "address": "623 Pearl Street, Sioux City, IA 51101", "phone": null, "website": "http://www.launchpadmuseum.com/", "rating": 4.7, "priceLevel": "$$"}, {"name": "Amareda", "category": "Shopping & Retail", "city": "Sioux City", "state": "IA", "description": "Curated downtown women's fashion boutique offering apparel and accessories with regular shopping events", "address": "600 4th St Suite 1000, Sioux City, IA", "phone": null, "website": "https://www.artifexhaus.com/", "rating": 4.7, "priceLevel": "$$"}];
+const CATS = [
+  {key:"Restaurants", img:"assets/img/restaurants.jpg", blurb:"Dine out"},
+  {key:"Bars & Nightlife", img:"assets/img/bars.jpg", blurb:"After dark"},
+  {key:"Coffee & Cafes", img:"assets/img/coffee.jpg", blurb:"Cafés & roasters"},
+  {key:"Shopping & Retail", img:"assets/img/shopping.jpg", blurb:"Shops & boutiques"},
+  {key:"Health, Beauty & Spa", img:"assets/img/beauty.jpg", blurb:"Look & feel good"},
+  {key:"Fitness & Recreation", img:"assets/img/fitness.jpg", blurb:"Move & play"},
+  {key:"Home & Professional Services", img:"assets/img/services.jpg", blurb:"Pros & trades"},
+  {key:"Automotive", img:"assets/img/automotive.jpg", blurb:"Auto & repair"},
+  {key:"Hotels & Lodging", img:"assets/img/hotels.jpg", blurb:"Stay awhile"},
+  {key:"Arts, Culture & Entertainment", img:"assets/img/arts.jpg", blurb:"See & do"}
+];
+const catImg = k => (CATS.find(c=>c.key===k)||{}).img || "assets/img/hero.jpg";
+BUSINESSES.forEach((b,i)=>{b.id=i; b.img=catImg(b.category); b.featured = [0,5,10,14,17,27,36,40].includes(i);});
+
+// ---------- rendering helpers ----------
+function stars(r){
+  if(!r) return '';
+  const full=Math.round(r);
+  return '<span class="s">'+'★'.repeat(full)+'<span style="color:#d9dfd9">'+'★'.repeat(5-full)+'</span></span>';
+}
+function cardHTML(b){
+  return `<article class="card" onclick="openListing(${b.id})">
+    <div class="card-img"><img src="${b.img}" alt="${b.name}" loading="lazy" />
+      <span class="chip">${b.category.split(' ')[0].replace(',','')}</span>
+      ${b.featured?'<span class="ribbon">Featured</span>':''}
+    </div>
+    <div class="card-body">
+      <h3>${b.name}</h3>
+      <div class="meta">
+        ${b.rating?`<span class="rating">${stars(b.rating)} ${b.rating.toFixed(1)}</span><span class="dot"></span>`:''}
+        ${b.priceLevel?`<span class="price">${b.priceLevel}</span><span class="dot"></span>`:''}
+        <span>${b.category}</span>
+      </div>
+      <p class="desc">${b.description}.</p>
+      <div class="card-foot">
+        <span class="loc"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5c6672" stroke-width="2"><path d="M12 21s-7-6.3-7-11a7 7 0 0114 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>${b.city}, ${b.state}</span>
+        <span class="viewlink">View details →</span>
+      </div>
+    </div>
+  </article>`;
+}
+
+function renderCategories(){
+  const counts={};
+  BUSINESSES.forEach(b=>counts[b.category]=(counts[b.category]||0)+1);
+  document.getElementById('catGrid').innerHTML = CATS.map(c=>`
+    <div class="cat" onclick="goCategory('${c.key.replace(/'/g,"\\'")}')">
+      <img src="${c.img}" alt="${c.key}" loading="lazy" />
+      <div class="cat-label"><h4>${c.key.replace(' & ',' & ')}</h4><span>${counts[c.key]||0} places</span></div>
+    </div>`).join('');
+}
+function renderFeatured(){
+  document.getElementById('featuredGrid').innerHTML =
+    BUSINESSES.filter(b=>b.featured).slice(0,6).map(cardHTML).join('');
+}
+
+// ---------- categories chips + filtering ----------
+let activeCat="";
+function renderChips(){
+  const chips=['All',...CATS.map(c=>c.key)];
+  document.getElementById('catChips').innerHTML = chips.map(c=>{
+    const val=c==='All'?'':c;
+    return `<button class="fchip ${val===activeCat?'active':''}" onclick="setCat('${val.replace(/'/g,"\\'")}')">${c}</button>`;
+  }).join('');
+}
+function setCat(c){activeCat=c;renderChips();applyFilters();}
+function applyFilters(){
+  const q=(document.getElementById('listSearch').value||'').toLowerCase();
+  const city=document.getElementById('listCity').value;
+  const sort=document.getElementById('listSort').value;
+  let list=BUSINESSES.filter(b=>{
+    const mCat=!activeCat||b.category===activeCat;
+    const mCity=!city||b.city===city;
+    const mQ=!q||(b.name+' '+b.category+' '+b.description).toLowerCase().includes(q);
+    return mCat&&mCity&&mQ;
+  });
+  list.sort((a,b)=> sort==='name' ? a.name.localeCompare(b.name) : (b.rating||0)-(a.rating||0));
+  const grid=document.getElementById('listGrid');
+  grid.innerHTML=list.map(cardHTML).join('');
+  document.getElementById('noResults').style.display=list.length?'none':'block';
+  document.getElementById('resultCount').textContent=`${list.length} ${list.length===1?'business':'businesses'}${activeCat?' in '+activeCat:''}`;
+}
+function goCategory(c){activeCat=c;location.hash='listings';}
+function doHeroSearch(e){
+  e.preventDefault();
+  const what=document.getElementById('q-what').value;
+  const where=document.getElementById('q-where').value;
+  activeCat="";
+  location.hash='listings';
+  setTimeout(()=>{
+    document.getElementById('listSearch').value=what;
+    document.getElementById('listCity').value=where?where.split(',')[0]:'';
+    renderChips();applyFilters();
+  },30);
+  return false;
+}
+
+// ---------- detail ----------
+function openListing(id){ location.hash='listing/'+id; }
+function renderDetail(id){
+  const b=BUSINESSES[id]; if(!b){location.hash='listings';return;}
+  const others=CATS.filter(c=>c.key!==b.category).slice(0,2).map(c=>c.img);
+  const gallery=[b.img,...others];
+  const dirUrl='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent((b.address||b.name)+', '+b.city+', '+b.state);
+  const reviews=[
+    {n:'Jordan M.',t:'A genuine Siouxland gem — friendly staff and consistently excellent. Highly recommend to anyone in the area.'},
+    {n:'Priya S.',t:'Found this through Go Local and so glad I did. Great experience from start to finish, will be back.'}
+  ];
+  document.getElementById('detailContent').innerHTML=`
+    <div class="detail-hero">
+      <img src="${b.img}" alt="${b.name}" />
+      <div class="wrap">
+        <a class="back" href="#listings"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg> Back to directory</a>
+        <span class="chip" style="position:static;display:inline-block;width:fit-content">${b.category}</span>
+        <h1>${b.name}</h1>
+        <div class="meta">
+          ${b.rating?`<span class="rating">${stars(b.rating)} ${b.rating.toFixed(1)}</span><span class="dot"></span>`:''}
+          ${b.priceLevel?`<span>${b.priceLevel}</span><span class="dot"></span>`:''}
+          <span class="loc"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 21s-7-6.3-7-11a7 7 0 0114 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> ${b.city}, ${b.state}</span>
+        </div>
+      </div>
+    </div>
+    <div class="wrap detail-grid">
+      <div class="detail-main">
+        <h2>About ${b.name}</h2>
+        <p>${b.description}. Located in the heart of ${b.city}, ${b.name} is a proud part of the Siouxland community and a local favourite among residents across the tri-state area.</p>
+        <h2>What people love</h2>
+        <div class="love">
+          <div><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Warm, local hospitality</div>
+          <div><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Consistently high quality</div>
+          <div><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Great value for Siouxland</div>
+          <div><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Community favourite</div>
+        </div>
+        <h2>Gallery</h2>
+        <div class="gallery">${gallery.map(g=>`<img src="${g}" alt="" loading="lazy" />`).join('')}</div>
+        <h2>Reviews</h2>
+        ${reviews.map(r=>`<div class="review"><div class="who"><div class="avatar">${r.n[0]}</div><div><b>${r.n}</b><br><span>${stars(5)} · Verified visit</span></div></div><p>${r.t}</p></div>`).join('')}
+      </div>
+      <aside>
+        <div class="side-card">
+          <div class="row"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.3-7-11a7 7 0 0114 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><div><b>Address</b>${b.address||b.city+', '+b.state}</div></div>
+          ${b.phone?`<div class="row"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.6A2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 2 .7 2.9a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.2-1.2a2 2 0 012.1-.5c.9.3 1.9.6 2.9.7a2 2 0 011.7 2z"/></svg><div><b>Phone</b>${b.phone}</div></div>`:''}
+          ${b.website?`<div class="row"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 010 18M12 3a15 15 0 000 18"/></svg><div><b>Website</b><a href="${b.website}" target="_blank" rel="noopener noreferrer" style="color:var(--green);font-weight:600;word-break:break-all">Visit site ↗</a></div></div>`:''}
+          <div class="row"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><b>Hours</b>Mon–Fri 9:00–18:00<br>Sat 10:00–16:00 · Sun closed</div></div>
+          <div class="map"><span class="pin"><svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-6.3-7-11a7 7 0 0114 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5" fill="#fff"/></svg></span></div>
+          <a class="btn btn-primary" href="${dirUrl}" target="_blank" rel="noopener noreferrer">Get directions</a>
+          <a class="btn btn-ghost" href="#" onclick="alert('Messaging is coming soon.');return false;">Message business</a>
+        </div>
+      </aside>
+    </div>`;
+}
+
+// ---------- billing toggle ----------
+let annual=false;
+function toggleBilling(){
+  annual=!annual;
+  document.getElementById('billSwitch').classList.toggle('off',!annual);
+  document.querySelectorAll('.plan .p b[data-m]').forEach(el=>{
+    el.textContent='$'+(annual?el.dataset.a:el.dataset.m);
+  });
+  document.querySelectorAll('.plan .p [data-suf]').forEach(el=>el.textContent=annual?'/yr':'/mo');
+}
+
+// ---------- router ----------
+const views=['home','listings','listing','pricing'];
+function router(){
+  let h=location.hash.replace('#','')||'home';
+  let [base,arg]=h.split('/');
+  if(base==='listings'&&h.includes('/')){ activeCat=decodeURIComponent(h.substring(h.indexOf('/')+1)); }
+  if(!views.includes(base)) base='home';
+  views.forEach(v=>document.getElementById('view-'+v).classList.toggle('active',v===base));
+  document.querySelectorAll('.nav-links a[data-nav]').forEach(a=>a.classList.toggle('active',a.dataset.nav===base));
+  if(base==='listings'){ renderChips(); applyFilters(); document.getElementById('listings-title').textContent = activeCat||'Explore Siouxland'; document.getElementById('listings-sub').textContent = activeCat?`Showing ${activeCat.toLowerCase()} across the tri-state.`:'Browse every local business in the directory.'; }
+  if(base==='listing'){ renderDetail(parseInt(arg)); }
+  document.getElementById('navRight').classList.remove('open');
+  window.scrollTo({top:0,behavior:'instant'in document.body.style?'instant':'auto'});
+  updateHeaderMode();
+}
+function updateHeaderMode(){
+  const base=(location.hash.replace('#','').split('/')[0])||'home';
+  const darkHero=(base==='home'||base==='listing');
+  const h=document.querySelector('header');
+  if(h) h.classList.toggle('transparent', darkHero && window.scrollY<48);
+}
+window.addEventListener('scroll',updateHeaderMode,{passive:true});
+window.addEventListener('hashchange',router);
+document.getElementById('burger').addEventListener('click',()=>document.getElementById('navRight').classList.toggle('open'));
+
+// init
+renderCategories();renderFeatured();renderChips();
+document.getElementById('stat-biz').textContent=BUSINESSES.length;
+router();
+</script>
+</body>
+</html>
