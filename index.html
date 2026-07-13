@@ -248,6 +248,60 @@ footer h5{color:#fff;font-family:var(--head);font-size:14px;text-transform:upper
   .foot-grid{grid-template-columns:1fr}
   .sec{padding:52px 0}
 }
+
+/* ---- advertiser: auth + dashboard ---- */
+.auth-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:110px 20px 60px;background:var(--bg-soft)}
+.auth-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-lg);width:100%;max-width:440px;padding:38px 34px}
+.auth-card.wide{max-width:920px;padding:0;overflow:hidden}
+.auth-logo{display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.auth-logo img{width:52px;height:52px;object-fit:contain}
+.auth-card h1{font-size:26px;text-align:center;margin-bottom:6px}
+.auth-card .sub{text-align:center;color:var(--muted);font-size:15px;margin-bottom:24px}
+.field-group{margin-bottom:15px}
+.field-group label{display:block;font-family:var(--head);font-weight:600;font-size:13px;margin-bottom:6px;color:var(--ink)}
+.field-group input,.field-group select{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:12px 14px;font-family:var(--body);font-size:15px;color:var(--ink);outline:none;transition:.15s;background:#fff}
+.field-group input:focus,.field-group select:focus{border-color:var(--green);box-shadow:0 0 0 3px var(--green-soft)}
+.auth-card .btn{width:100%;justify-content:center;margin-top:6px}
+.auth-alt{text-align:center;font-size:14px;color:var(--muted);margin-top:18px}
+.auth-alt a{color:var(--green);font-weight:600}
+.auth-divider{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:12.5px;text-transform:uppercase;letter-spacing:.08em;margin:22px 0}
+.auth-divider::before,.auth-divider::after{content:"";flex:1;height:1px;background:var(--line)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.signup-grid{display:grid;grid-template-columns:1.25fr .85fr}
+.signup-main{padding:40px}
+.signup-main h1{text-align:left}
+.signup-main .sub{text-align:left}
+.signup-aside{background:var(--ink);color:#fff;padding:40px}
+.signup-aside h3{color:#fff;font-size:20px}
+.plan-pill{display:inline-block;background:var(--green);color:#fff;font-family:var(--head);font-weight:700;font-size:12.5px;padding:5px 13px;border-radius:999px;margin-bottom:16px}
+.signup-aside .price{font-family:var(--head);font-size:40px;font-weight:800;margin:4px 0}
+.signup-aside .price span:last-child{font-size:15px;color:rgba(255,255,255,.7);font-weight:600}
+.signup-aside ul{list-style:none;margin-top:18px;display:flex;flex-direction:column;gap:11px}
+.signup-aside li{display:flex;gap:9px;font-size:14px;color:rgba(255,255,255,.86)}
+.signup-aside li svg{flex:none;color:#4ade80;margin-top:3px}
+.pay-note{display:flex;gap:7px;align-items:center;justify-content:center;font-size:12.5px;color:var(--muted);margin-top:14px}
+.order-line{display:flex;justify-content:space-between;font-size:15px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.9)}
+.order-total{display:flex;justify-content:space-between;font-family:var(--head);font-weight:800;font-size:20px;margin-top:16px;color:#fff}
+.dash{padding:100px 0 60px;background:var(--bg-soft);min-height:100vh}
+.dash-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:26px}
+.dash-head h1{font-size:30px}
+.badge-soft{display:inline-block;background:var(--green-soft);color:var(--green-dark);font-family:var(--head);font-weight:700;font-size:12px;padding:5px 12px;border-radius:999px}
+.dash-grid{display:grid;grid-template-columns:220px 1fr;gap:24px;align-items:start}
+.dash-nav{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:12px;position:sticky;top:96px}
+.dash-nav a{display:block;padding:11px 14px;border-radius:10px;font-family:var(--head);font-weight:600;font-size:14.5px;color:var(--ink);cursor:pointer;transition:.15s}
+.dash-nav a.active,.dash-nav a:hover{background:var(--green-soft);color:var(--green-dark)}
+.dash-main{display:flex;flex-direction:column;gap:20px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+.panel h2{font-size:19px;margin-bottom:16px}
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.stat-box{background:var(--bg-soft);border-radius:12px;padding:18px;text-align:center}
+.stat-box b{font-family:var(--head);font-size:28px;color:var(--ink);display:block}
+.stat-box span{font-size:13px;color:var(--muted)}
+.dash-listing{display:flex;gap:16px;align-items:center}
+.dash-listing img{width:130px;height:88px;border-radius:10px;object-fit:cover;flex:none}
+@media(max-width:760px){.signup-grid{grid-template-columns:1fr}.dash-grid{grid-template-columns:1fr}.dash-nav{position:static}}
+@media(max-width:560px){.form-row{grid-template-columns:1fr}.stat-row{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
@@ -264,7 +318,8 @@ footer h5{color:#fff;font-family:var(--head);font-size:14px;text-transform:upper
         <a href="#home" onclick="alert('Our Siouxland blog is coming soon.');return false;">Blog</a>
         <a href="#listings" data-nav="listings">Contact</a>
       </div>
-      <a class="signin" href="#" onclick="alert('Member sign-in is coming soon.');return false;">Sign In</a>
+      <a class="signin" id="authLink" href="#login" data-nav="login">Sign In</a>
+      <a class="signin" id="signoutLink" href="#" style="display:none" onclick="signOut();return false;">Sign out</a>
       <a class="btn btn-primary btn-sm" href="#pricing" data-nav="pricing">Add Your Business</a>
       <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
     </nav>
@@ -431,7 +486,7 @@ footer h5{color:#fff;font-family:var(--head);font-size:14px;text-transform:upper
             <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Map, hours & contact info</li>
             <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Up to 3 photos</li>
           </ul>
-          <a class="btn btn-ghost" style="justify-content:center" href="#" onclick="alert('Business sign-up is coming soon.');return false;">Get started</a>
+          <a class="btn btn-ghost" style="justify-content:center" href="#signup/free" data-nav="signup">Get started</a>
         </div>
         <div class="plan pop">
           <h3>Featured</h3>
@@ -445,7 +500,7 @@ footer h5{color:#fff;font-family:var(--head);font-size:14px;text-transform:upper
             <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Post offers & coupons</li>
             <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Performance analytics</li>
           </ul>
-          <a class="btn btn-primary" style="justify-content:center" href="#" onclick="alert('Business sign-up is coming soon.');return false;">Start Featured</a>
+          <a class="btn btn-primary" style="justify-content:center" href="#signup/featured" data-nav="signup">Start Featured</a>
         </div>
         <div class="plan">
           <h3>Premium</h3>
@@ -459,7 +514,7 @@ footer h5{color:#fff;font-family:var(--head);font-size:14px;text-transform:upper
             <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Lead capture forms</li>
             <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Priority support</li>
           </ul>
-          <a class="btn btn-ghost" style="justify-content:center" href="#" onclick="alert('Business sign-up is coming soon.');return false;">Go Premium</a>
+          <a class="btn btn-ghost" style="justify-content:center" href="#signup/premium" data-nav="signup">Go Premium</a>
         </div>
       </div>
 
@@ -473,6 +528,150 @@ footer h5{color:#fff;font-family:var(--head);font-size:14px;text-transform:upper
     </div>
   </section>
 </section>
+
+<!-- ===== LOGIN ===== -->
+<section class="view" id="view-login">
+  <div class="auth-wrap">
+    <div class="auth-card">
+      <div class="auth-logo"><img src="assets/img/golocal-logo.png" alt="Go Local Siouxland" /></div>
+      <h1>Welcome back</h1>
+      <p class="sub">Sign in to manage your Go Local listing.</p>
+      <form onsubmit="return doLogin(event)">
+        <div class="field-group"><label>Email</label><input type="email" required placeholder="you@business.com" /></div>
+        <div class="field-group"><label>Password</label><input type="password" required placeholder="Your password" /></div>
+        <div style="text-align:right;margin-bottom:12px"><a href="#" onclick="alert('A reset link would be emailed to you.');return false;" style="font-size:13px;color:var(--green);font-weight:600">Forgot password?</a></div>
+        <button class="btn btn-primary" type="submit">Sign in</button>
+      </form>
+      <div class="auth-divider">new to Go Local?</div>
+      <a class="btn btn-ghost" style="width:100%;justify-content:center" href="#pricing" data-nav="pricing">List your business</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SIGN UP ===== -->
+<section class="view" id="view-signup">
+  <div class="auth-wrap">
+    <div class="auth-card wide">
+      <div class="signup-grid">
+        <div class="signup-main">
+          <h1 style="font-size:24px">Create your business account</h1>
+          <p class="sub">List <span id="su-planname2">your business</span> on Go Local Siouxland.</p>
+          <form onsubmit="return doSignup(event)">
+            <div class="field-group"><label>Business name</label><input id="su-biz" required placeholder="e.g. Riverside Diner" /></div>
+            <div class="form-row">
+              <div class="field-group"><label>Category</label><select id="su-cat"></select></div>
+              <div class="field-group"><label>City</label><select id="su-city"><option>Sioux City, IA</option><option>South Sioux City, NE</option><option>North Sioux City, SD</option><option>Dakota Dunes, SD</option><option>Sergeant Bluff, IA</option></select></div>
+            </div>
+            <div class="field-group"><label>Your name</label><input required placeholder="Full name" /></div>
+            <div class="field-group"><label>Email</label><input id="su-email" type="email" required placeholder="you@business.com" /></div>
+            <div class="field-group"><label>Password</label><input type="password" required placeholder="Create a password" /></div>
+            <button class="btn btn-primary" id="su-submit" type="submit">Create free listing</button>
+            <div class="auth-alt">Already have an account? <a href="#login" data-nav="login">Sign in</a></div>
+          </form>
+        </div>
+        <div class="signup-aside">
+          <span class="plan-pill" id="su-planpill">Basic plan</span>
+          <h3 id="su-planname">Basic</h3>
+          <div class="price"><span id="su-price">$0</span><span id="su-cycle">/mo</span></div>
+          <p style="color:rgba(255,255,255,.7);font-size:14px" id="su-plandesc">Everything you need to get on the map.</p>
+          <ul id="su-planfeatures"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CHECKOUT (paid plans) ===== -->
+<section class="view" id="view-checkout">
+  <div class="auth-wrap">
+    <div class="auth-card wide">
+      <div class="signup-grid">
+        <div class="signup-main">
+          <h1 style="font-size:24px">Payment details</h1>
+          <p class="sub">Start your <span id="co-planname2">Featured</span> plan — cancel anytime.</p>
+          <form onsubmit="return doCheckout(event)">
+            <div class="field-group"><label>Name on card</label><input required placeholder="Full name" /></div>
+            <div class="field-group"><label>Card number</label><input required placeholder="1234 5678 9012 3456" inputmode="numeric" /></div>
+            <div class="form-row">
+              <div class="field-group"><label>Expiry</label><input required placeholder="MM / YY" /></div>
+              <div class="field-group"><label>CVC</label><input required placeholder="123" inputmode="numeric" /></div>
+            </div>
+            <div class="field-group"><label>Billing ZIP</label><input required placeholder="51101" /></div>
+            <button class="btn btn-primary" type="submit">Pay &amp; activate</button>
+            <div class="pay-note"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg> 256-bit secured checkout · no payment is taken</div>
+          </form>
+        </div>
+        <div class="signup-aside">
+          <span class="plan-pill" id="co-planpill">Featured</span>
+          <h3>Order summary</h3>
+          <div style="margin-top:16px">
+            <div class="order-line"><span id="co-planlabel">Featured plan (monthly)</span><span id="co-price">$29</span></div>
+            <div class="order-line"><span>Setup fee</span><span>$0</span></div>
+            <div class="order-total"><span>Due today</span><span id="co-total">$29</span></div>
+          </div>
+          <p style="color:rgba(255,255,255,.6);font-size:12.5px;margin-top:16px">Billed monthly. Manage or cancel anytime from your dashboard.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== OWNER DASHBOARD ===== -->
+<section class="view" id="view-dashboard">
+  <div class="dash">
+    <div class="wrap">
+      <div class="dash-head">
+        <div>
+          <span class="badge-soft" id="db-planbadge" style="margin-bottom:10px">Basic plan</span>
+          <h1>Welcome, <span id="db-biz">Your Business</span></h1>
+          <p style="color:var(--muted)">Here's how your listing is performing on Go Local Siouxland.</p>
+        </div>
+        <a class="btn btn-primary btn-sm" href="#pricing" data-nav="pricing" id="db-upgrade">Upgrade plan</a>
+      </div>
+      <div class="dash-grid">
+        <nav class="dash-nav">
+          <a class="active">Overview</a>
+          <a onclick="alert('The listing editor would open here.');return false;">Edit listing</a>
+          <a onclick="alert('The photo manager would open here.');return false;">Photos</a>
+          <a onclick="alert('Offers &amp; coupons would open here.');return false;">Offers</a>
+          <a onclick="alert('Full analytics would open here.');return false;">Analytics</a>
+          <a onclick="alert('Plan &amp; billing settings would open here.');return false;">Plan &amp; billing</a>
+        </nav>
+        <div class="dash-main">
+          <div class="panel">
+            <h2>This month</h2>
+            <div class="stat-row">
+              <div class="stat-box"><b>1,284</b><span>Listing views</span></div>
+              <div class="stat-box"><b>216</b><span>Website clicks</span></div>
+              <div class="stat-box"><b>48</b><span>Calls</span></div>
+            </div>
+          </div>
+          <div class="panel">
+            <h2>Your listing</h2>
+            <div class="dash-listing">
+              <img id="db-img" src="assets/img/restaurants.jpg" alt="" />
+              <div>
+                <div class="meta" style="margin-bottom:4px"><span class="rating"><span class="s">★★★★★</span> New</span></div>
+                <h3 id="db-listbiz" style="font-family:var(--head);font-size:18px">Your Business</h3>
+                <p style="color:var(--muted);font-size:14px" id="db-listcat">Category · Sioux City, IA</p>
+              </div>
+            </div>
+            <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+              <a class="btn btn-ghost btn-sm" onclick="alert('The listing editor would open here.');return false;">Edit details</a>
+              <a class="btn btn-ghost btn-sm" href="#listings" data-nav="listings">View in directory</a>
+            </div>
+          </div>
+          <div class="panel" id="db-upgradepanel">
+            <h2>Reach more customers</h2>
+            <p style="color:var(--muted);font-size:15px">You're on the Basic (free) plan. Upgrade to Featured or Premium for top-of-category placement, more photos, offers and analytics.</p>
+            <a class="btn btn-orange" style="margin-top:16px" href="#pricing" data-nav="pricing">Compare plans</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 </main>
 
 <footer>
@@ -690,7 +889,58 @@ function toggleBilling(){
 }
 
 // ---------- router ----------
-const views=['home','listings','listing','pricing'];
+const views=['home','listings','listing','pricing','login','signup','checkout','dashboard'];
+
+// ---------- advertiser sign-up / login (front-end) ----------
+const PLANS={
+  free:{name:'Basic',price:'$0',cycle:'/mo',desc:'Everything you need to get on the map.',
+    features:['Standard business listing','Category & search placement','Map, hours & contact info','Up to 3 photos'],cta:'Create free listing',paid:false},
+  featured:{name:'Featured',price:'$29',cycle:'/mo',desc:'Stand out and rise to the top of your category.',
+    features:['Everything in Basic','Featured placement in category','Up to 15 photos + gallery','Reviews, offers & analytics'],cta:'Continue to payment',paid:true},
+  premium:{name:'Premium',price:'$79',cycle:'/mo',desc:'Maximum visibility for serious local growth.',
+    features:['Everything in Featured','Homepage spotlight rotation','Verified badge + unlimited photos','Lead forms & priority support'],cta:'Continue to payment',paid:true}
+};
+let AUTH={in:false,biz:'Your Business',plan:'free',cat:'Restaurants',city:'Sioux City, IA'};
+function populateSignupCat(){const sel=document.getElementById('su-cat');if(sel)sel.innerHTML=CATS.map(c=>`<option>${c.key}</option>`).join('');}
+function setSignupPlan(plan){
+  if(!PLANS[plan])plan='free';AUTH.plan=plan;const p=PLANS[plan];const g=id=>document.getElementById(id);
+  g('su-planpill').textContent=p.name+' plan';g('su-planname').textContent=p.name;
+  g('su-planname2').textContent='your business on the '+p.name+' plan';
+  g('su-price').textContent=p.price;g('su-cycle').textContent=p.cycle;g('su-plandesc').textContent=p.desc;
+  g('su-planfeatures').innerHTML=p.features.map(f=>`<li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>${f}</li>`).join('');
+  g('su-submit').textContent=p.cta;
+}
+function setCheckoutPlan(plan){
+  if(!PLANS[plan]||!PLANS[plan].paid)plan='featured';AUTH.plan=plan;const p=PLANS[plan];const g=id=>document.getElementById(id);
+  g('co-planpill').textContent=p.name;g('co-planname2').textContent=p.name;
+  g('co-planlabel').textContent=p.name+' plan (monthly)';g('co-price').textContent=p.price;g('co-total').textContent=p.price;
+}
+function doSignup(e){
+  e.preventDefault();
+  AUTH.biz=(document.getElementById('su-biz').value||'Your Business');
+  AUTH.cat=(document.getElementById('su-cat').value||'Restaurants');
+  AUTH.city=(document.getElementById('su-city').value||'Sioux City, IA');
+  if(PLANS[AUTH.plan].paid){location.hash='checkout/'+AUTH.plan;}else{AUTH.in=true;location.hash='dashboard';}
+  return false;
+}
+function doCheckout(e){e.preventDefault();AUTH.in=true;location.hash='dashboard';return false;}
+function doLogin(e){e.preventDefault();AUTH.in=true;location.hash='dashboard';return false;}
+function signOut(){AUTH.in=false;location.hash='home';}
+function renderDashboard(){
+  const g=id=>document.getElementById(id);const p=PLANS[AUTH.plan]||PLANS.free;
+  g('db-biz').textContent=AUTH.biz;g('db-listbiz').textContent=AUTH.biz;
+  g('db-planbadge').textContent=p.name+' plan';g('db-listcat').textContent=AUTH.cat+' · '+AUTH.city;
+  g('db-img').src=catImg(AUTH.cat);
+  const isPremium=AUTH.plan==='premium';
+  g('db-upgradepanel').style.display=isPremium?'none':'block';
+  g('db-upgrade').style.display=isPremium?'none':'inline-flex';
+}
+function updateAuthUI(){
+  const link=document.getElementById('authLink');const out=document.getElementById('signoutLink');if(!link)return;
+  if(AUTH.in){link.textContent='Dashboard';link.setAttribute('href','#dashboard');link.dataset.nav='dashboard';if(out)out.style.display='';}
+  else{link.textContent='Sign In';link.setAttribute('href','#login');link.dataset.nav='login';if(out)out.style.display='none';}
+}
+
 function router(){
   let h=location.hash.replace('#','')||'home';
   let [base,arg]=h.split('/');
@@ -700,6 +950,10 @@ function router(){
   document.querySelectorAll('.nav-links a[data-nav]').forEach(a=>a.classList.toggle('active',a.dataset.nav===base));
   if(base==='listings'){ renderChips(); applyFilters(); document.getElementById('listings-title').textContent = activeCat||'Explore Siouxland'; document.getElementById('listings-sub').textContent = activeCat?`Showing ${activeCat.toLowerCase()} across the tri-state.`:'Browse every local business in the directory.'; }
   if(base==='listing'){ renderDetail(parseInt(arg)); }
+  if(base==='signup'){ setSignupPlan(arg||'free'); }
+  if(base==='checkout'){ setCheckoutPlan(arg||'featured'); }
+  if(base==='dashboard'){ AUTH.in=true; renderDashboard(); }
+  updateAuthUI();
   document.getElementById('navRight').classList.remove('open');
   window.scrollTo({top:0,behavior:'instant'in document.body.style?'instant':'auto'});
   updateHeaderMode();
@@ -715,7 +969,7 @@ window.addEventListener('hashchange',router);
 document.getElementById('burger').addEventListener('click',()=>document.getElementById('navRight').classList.toggle('open'));
 
 // init
-renderCategories();renderFeatured();renderChips();
+renderCategories();renderFeatured();renderChips();populateSignupCat();
 document.getElementById('stat-biz').textContent=BUSINESSES.length;
 router();
 </script>
