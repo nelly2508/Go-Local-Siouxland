@@ -1,6 +1,7 @@
 // Go Local Siouxland — minimal zero-dependency static file server.
 // Designed for Railway (Nixpacks auto-detects Node via package.json).
 // Binds to 0.0.0.0 on the port Railway provides via process.env.PORT.
+// Also 301-redirects the www subdomain to the canonical apex domain.
 
 const http = require('http');
 const fs = require('fs');
@@ -8,6 +9,7 @@ const path = require('path');
 
 const PORT = process.env.PORT || 3000;
 const ROOT = __dirname;
+const CANONICAL_HOST = 'golocalsiouxland.com'; // apex is canonical
 
 const MIME = {
   '.html': 'text/html; charset=utf-8',
@@ -27,6 +29,13 @@ const MIME = {
 
 const server = http.createServer((req, res) => {
   try {
+    // Canonical redirect: www.golocalsiouxland.com -> https://golocalsiouxland.com
+    const host = (req.headers.host || '').toLowerCase().split(':')[0];
+    if (host.startsWith('www.')) {
+      res.writeHead(301, { Location: 'https://' + CANONICAL_HOST + req.url });
+      return res.end();
+    }
+
     let urlPath = decodeURIComponent(req.url.split('?')[0]);
     if (urlPath === '/') urlPath = '/index.html';
 
