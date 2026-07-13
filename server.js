@@ -30,7 +30,10 @@ const MIME = {
 const server = http.createServer((req, res) => {
   try {
     // Canonical redirect: www.golocalsiouxland.com -> https://golocalsiouxland.com
-    const host = (req.headers.host || '').toLowerCase().split(':')[0];
+    // Railway's edge proxy forwards the public hostname in x-forwarded-host,
+    // so check that first and fall back to the Host header for local/direct use.
+    const rawHost = req.headers['x-forwarded-host'] || req.headers.host || '';
+    const host = rawHost.toLowerCase().split(',')[0].trim().split(':')[0];
     if (host.startsWith('www.')) {
       res.writeHead(301, { Location: 'https://' + CANONICAL_HOST + req.url });
       return res.end();
